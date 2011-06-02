@@ -1,4 +1,5 @@
 ﻿Guiding principles
+
 * be string friendly - don't force everyone to do new FilePath(@"file.txt")
 * be strongly typed - don't allow combining 2 non-directory paths
 * be explicit about file-system access
