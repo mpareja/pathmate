@@ -21,6 +21,10 @@ namespace PathMate
 			return RelativeTo(Environment.CurrentDirectory);
 		}
 
+		/// <summary>
+		/// If path is relative, it is made absolute based on the current working directory.
+		/// </summary>
+		/// <returns>An absolute DirectoryPath.</returns>
 		public virtual DirectoryPath MakeAbsolute()
 		{
 			if (IsRelative == false)
