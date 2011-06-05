@@ -25,5 +25,16 @@ namespace PathMate.Tests
 			DirectoryPath newpath = @"c:\projects";
 			newpath.ShouldEqual(path);
 		};
+
+		It can_be_combined_with_a_relative_directory_path = () =>
+			(path + new DirectoryPath(@"test\path")).ShouldEqual(new DirectoryPath(@"c:\projects\test\path"));
+
+		It can_be_combine_with_multiple_directories_and_a_file_path = () =>
+			(path + new DirectoryPath(@"test") + new DirectoryPath("path") + new FilePath("file.txt"))
+				.ShouldEqual(new FilePath(@"c:\projects\test\path\file.txt"));
+
+		It can_be_combined_implicitly = () =>
+			(path + "test" + "path" + new FilePath("file.txt"))
+				.ShouldEqual(new FilePath(@"c:\projects\test\path\file.txt"));
 	}
 }

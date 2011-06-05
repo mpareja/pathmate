@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 
 namespace PathMate
 {
@@ -74,6 +73,11 @@ namespace PathMate
 		{
 			if (path == null) throw new ArgumentNullException("path");
 			return path._path;
+		}
+
+		public static FilePath operator +(DirectoryPath left, FilePath right)
+		{
+			return right.RelativeTo(left);
 		}
 	}
 }

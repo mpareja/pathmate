@@ -64,5 +64,10 @@ namespace PathMate
 			if (path == null) throw new ArgumentNullException("path");
 			return path._path;
 		}
+
+		public static DirectoryPath operator +(DirectoryPath left, DirectoryPath right)
+		{
+			return right.RelativeTo(left);
+		}
 	}
 }

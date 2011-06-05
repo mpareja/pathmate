@@ -25,6 +25,9 @@ namespace PathMate.Tests
 		It can_be_made_relative_to_a_directory_path = () =>
 			path.RelativeTo(@"c:\projects").ToString().ShouldEqual(@"c:\projects\test.txt");
 
+		It can_be_made_relative_using_plus_operator = () =>
+			(new DirectoryPath(@"c:\projects") + path).ShouldEqual(new FilePath(@"c:\projects\test.txt"));
+
 		It is_considered_relative = () =>
 			path.IsRelative.ShouldBeTrue();
 
