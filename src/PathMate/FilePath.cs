@@ -7,6 +7,16 @@ namespace PathMate
 	{
 		public FilePath(string path) : base(path) { }
 
+		public FilePath FileName
+		{
+			get { return System.IO.Path.GetFileName(this); }
+		}
+
+		public FilePath FileNameWithoutExtension
+		{
+			get { return System.IO.Path.GetFileNameWithoutExtension(this); }
+		}
+
 		public virtual FilePath RelativeTo(DirectoryPath directoryPath)
 		{
 			if (directoryPath == null) throw new ArgumentNullException("directoryPath");
