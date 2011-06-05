@@ -1,3 +1,4 @@
+using System;
 using Machine.Specifications;
 
 namespace PathMate.Tests
@@ -36,5 +37,21 @@ namespace PathMate.Tests
 		It can_be_combined_implicitly = () =>
 			(path + "test" + "path" + new FilePath("file.txt"))
 				.ShouldEqual(new FilePath(@"c:\projects\test\path\file.txt"));
+
+		It should_stay_the_same_when_asked_to_be_made_absolute = () =>
+			path.MakeAbsolute().ShouldEqual(path);
+	}
+
+	public class a_directory_path_that_is_relative
+	{
+		protected static DirectoryPath path;
+
+		Establish context = delegate {
+			path = new DirectoryPath(@"projects\pathmate");
+		};
+
+		It can_be_made_absolute_based_on_the_current_directory = () =>
+			path.MakeAbsolute().ShouldEqual(new DirectoryPath(
+				System.IO.Path.Combine(Environment.CurrentDirectory, @"projects\pathmate")));
 	}
 }
