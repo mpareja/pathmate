@@ -27,12 +27,6 @@ namespace PathMate.Tests
 
 		It is_considered_relative = () =>
 			path.IsRelative.ShouldBeTrue();
-
-		It can_determine_if_path_is_not_relative = () => {
-			FilePath.IsRelativePath(@"c:\test.txt").ShouldBeFalse();
-			FilePath.IsRelativePath(@"d:\test\test.txt").ShouldBeFalse();
-			FilePath.IsRelativePath(@"c:\test1\test2\test.txt").ShouldBeFalse();
-		};
 	}
 
 	public class a_file_path_that_is_relative_and_multiple_directories_deep
