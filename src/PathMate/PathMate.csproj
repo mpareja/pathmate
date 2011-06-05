@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DirectoryPath.cs" />
     <Compile Include="FilePath.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

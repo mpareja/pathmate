@@ -11,7 +11,7 @@ namespace PathMate.Tests
 		};
 
 		It returns_the_directory_as_a_string = () =>
-			path.Path.ShouldEqual(@"c:\projects");
+			path.ToString().ShouldEqual(@"c:\projects");
 
 		It can_be_implicitly_converted_to_a_string = delegate {
 			string s = path;

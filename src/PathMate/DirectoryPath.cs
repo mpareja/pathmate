@@ -2,14 +2,23 @@
 
 namespace PathMate
 {
-	public class DirectoryPath
+	public class DirectoryPath : Path
 	{
-		public readonly string Path;
+		public DirectoryPath(string path) : base(path) { }
 
-		public DirectoryPath(string path)
+		public DirectoryPath RelativeTo(DirectoryPath directoryPath)
 		{
-			if (path == null) throw new ArgumentNullException("path");
-			Path = path;
+			if (directoryPath == null) throw new ArgumentNullException("directoryPath");
+			if (IsRelative == false)
+				throw new InvalidOperationException("DirectoryPath is not relative.");
+
+			var newpath = System.IO.Path.Combine(directoryPath.ToString(), _path);
+			return new DirectoryPath(newpath);
+		}
+
+		public DirectoryPath RelativeToWorkingDir()
+		{
+			return RelativeTo(Environment.CurrentDirectory);
 		}
 
 		#region Equality
@@ -17,7 +26,7 @@ namespace PathMate
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
-			return Equals(other.Path, Path);
+			return Equals(other._path, _path);
 		}
 
 		public override bool Equals(object obj)
@@ -37,6 +46,11 @@ namespace PathMate
 		{
 			return !Equals(left, right);
 		}
+
+		public override int GetHashCode()
+		{
+			return _path.GetHashCode();
+		}
 		#endregion
 
 		public static implicit operator DirectoryPath(string path)
@@ -48,12 +62,7 @@ namespace PathMate
 		public static implicit operator string(DirectoryPath path)
 		{
 			if (path == null) throw new ArgumentNullException("path");
-			return path.Path;
-		}
-
-		public override int GetHashCode()
-		{
-			return Path.GetHashCode();
+			return path._path;
 		}
 	}
 }

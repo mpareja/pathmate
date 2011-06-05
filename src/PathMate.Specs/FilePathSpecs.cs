@@ -12,7 +12,7 @@ namespace PathMate.Tests
 		};
 
 		It returns_the_filename_as_string = () =>
-			path.Path.ShouldEqual("test.txt");
+			path.ToString().ShouldEqual("test.txt");
 
 		It can_be_implicitly_converted_to_a_string = delegate {
 			string actual = path;
@@ -23,7 +23,7 @@ namespace PathMate.Tests
 			typeof(ArgumentException).ShouldBeThrownBy(() => path.RelativeTo(null));
 
 		It can_be_made_relative_to_a_directory_path = () =>
-			path.RelativeTo(@"c:\projects").Path.ShouldEqual(@"c:\projects\test.txt");
+			path.RelativeTo(@"c:\projects").ToString().ShouldEqual(@"c:\projects\test.txt");
 
 		It is_considered_relative = () =>
 			path.IsRelative.ShouldBeTrue();
@@ -47,7 +47,7 @@ namespace PathMate.Tests
 			path.IsRelative.ShouldBeTrue();
 
 		It can_be_made_relative_to_a_directory_path = () =>
-			path.RelativeTo(@"c:\projects").Path.ShouldEqual(@"c:\projects\test1\test2\test.txt");
+			path.RelativeTo(@"c:\projects").ToString().ShouldEqual(@"c:\projects\test1\test2\test.txt");
 	}
 
 	public class a_file_path_that_is_absolute
