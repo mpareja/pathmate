@@ -30,5 +30,10 @@ namespace PathMate
 		{
 			return !System.IO.Path.IsPathRooted(path);
 		}
+
+		public static DirectoryPath WorkingDir
+		{
+			get { return new DirectoryPath(System.Environment.CurrentDirectory); }
+		}
 	}
 }
