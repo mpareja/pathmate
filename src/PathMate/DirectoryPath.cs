@@ -6,7 +6,7 @@ namespace PathMate
 	{
 		public DirectoryPath(string path) : base(path) { }
 
-		public DirectoryPath RelativeTo(DirectoryPath directoryPath)
+		public virtual DirectoryPath RelativeTo(DirectoryPath directoryPath)
 		{
 			if (directoryPath == null) throw new ArgumentNullException("directoryPath");
 			if (IsRelative == false)
@@ -16,7 +16,7 @@ namespace PathMate
 			return new DirectoryPath(newpath);
 		}
 
-		public DirectoryPath RelativeToWorkingDir()
+		public virtual DirectoryPath RelativeToWorkingDir()
 		{
 			return RelativeTo(Environment.CurrentDirectory);
 		}

@@ -11,12 +11,12 @@ namespace PathMate
 			_path = path;
 		}
 
-		public bool IsRelative
+		public virtual bool IsRelative
 		{
 			get { return IsRelativePath(_path); }
 		}
 
-		public FileInfo FileInfo 
+		public virtual FileInfo FileInfo 
 		{
 			get { return new FileInfo(_path); }
 		}
