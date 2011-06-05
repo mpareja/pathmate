@@ -51,6 +51,9 @@ namespace PathMate.Tests
 
 		It can_be_made_relative_to_a_directory_path = () =>
 			path.RelativeTo(@"c:\projects").ToString().ShouldEqual(@"c:\projects\test1\test2\test.txt");
+
+		It can_be_made_absolute_based_on_the_current_directory = () =>
+			path.MakeAbsolute().ShouldEqual(new FilePath(System.IO.Path.Combine(Environment.CurrentDirectory, path)));
 	}
 
 	public class a_file_path_that_is_absolute
@@ -73,6 +76,9 @@ namespace PathMate.Tests
 
 		It can_return_the_filename_without_extension = () =>
 			path.FileNameWithoutExtension.ShouldEqual(new FilePath(@"test"));
+
+		It should_stay_the_same_when_asked_to_be_made_absolute = () =>
+			path.MakeAbsolute().ShouldEqual(path);
 	}
 
 	public class a_file_path_with_multiple_periods_in_the_filename

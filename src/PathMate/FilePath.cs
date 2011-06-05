@@ -31,6 +31,13 @@ namespace PathMate
 			return RelativeTo(Environment.CurrentDirectory);
 		}
 
+		public FilePath MakeAbsolute()
+		{
+			if (IsRelative == false)
+				return this;
+			return WorkingDir + this;
+		}
+
 		#region Equality
 		public bool Equals(FilePath other)
 		{
